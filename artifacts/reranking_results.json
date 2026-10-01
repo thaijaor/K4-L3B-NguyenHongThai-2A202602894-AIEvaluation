@@ -1,0 +1,173 @@
+{
+  "method": "lexical overlap with question; no gold answer used for reranking",
+  "source": "artifacts/actual_answers.json",
+  "results": [
+    {
+      "id": "E01",
+      "recall_before": 0.9,
+      "recall_after": 0.9,
+      "precision_before": 0.8666666666666667,
+      "precision_after": 0.8666666666666667,
+      "delta_precision": 0.0
+    },
+    {
+      "id": "E02",
+      "recall_before": 0.7,
+      "recall_after": 0.7,
+      "precision_before": 1.0,
+      "precision_after": 1.0,
+      "delta_precision": 0.0
+    },
+    {
+      "id": "E03",
+      "recall_before": 0.8571428571428571,
+      "recall_after": 0.8571428571428571,
+      "precision_before": 1.0,
+      "precision_after": 1.0,
+      "delta_precision": 0.0
+    },
+    {
+      "id": "E04",
+      "recall_before": 0.8333333333333334,
+      "recall_after": 0.8333333333333334,
+      "precision_before": 1.0,
+      "precision_after": 1.0,
+      "delta_precision": 0.0
+    },
+    {
+      "id": "E05",
+      "recall_before": 1.0,
+      "recall_after": 1.0,
+      "precision_before": 1.0,
+      "precision_after": 1.0,
+      "delta_precision": 0.0
+    },
+    {
+      "id": "M01",
+      "recall_before": 1.0,
+      "recall_after": 1.0,
+      "precision_before": 1.0,
+      "precision_after": 1.0,
+      "delta_precision": 0.0
+    },
+    {
+      "id": "M02",
+      "recall_before": 0.9285714285714286,
+      "recall_after": 0.9285714285714286,
+      "precision_before": 0.9166666666666666,
+      "precision_after": 1.0,
+      "delta_precision": 0.08333333333333337
+    },
+    {
+      "id": "M03",
+      "recall_before": 1.0,
+      "recall_after": 1.0,
+      "precision_before": 0.9166666666666666,
+      "precision_after": 1.0,
+      "delta_precision": 0.08333333333333337
+    },
+    {
+      "id": "M04",
+      "recall_before": 0.7777777777777778,
+      "recall_after": 0.7777777777777778,
+      "precision_before": 1.0,
+      "precision_after": 1.0,
+      "delta_precision": 0.0
+    },
+    {
+      "id": "M05",
+      "recall_before": 0.9411764705882353,
+      "recall_after": 0.9411764705882353,
+      "precision_before": 1.0,
+      "precision_after": 1.0,
+      "delta_precision": 0.0
+    },
+    {
+      "id": "M06",
+      "recall_before": 1.0,
+      "recall_after": 1.0,
+      "precision_before": 0.8041666666666667,
+      "precision_after": 1.0,
+      "delta_precision": 0.1958333333333333
+    },
+    {
+      "id": "M07",
+      "recall_before": 0.8,
+      "recall_after": 0.8,
+      "precision_before": 0.95,
+      "precision_after": 0.95,
+      "delta_precision": 0.0
+    },
+    {
+      "id": "H01",
+      "recall_before": 0.7647058823529411,
+      "recall_after": 0.7647058823529411,
+      "precision_before": 0.8041666666666667,
+      "precision_after": 1.0,
+      "delta_precision": 0.1958333333333333
+    },
+    {
+      "id": "H02",
+      "recall_before": 0.9583333333333334,
+      "recall_after": 0.9583333333333334,
+      "precision_before": 0.95,
+      "precision_after": 0.95,
+      "delta_precision": 0.0
+    },
+    {
+      "id": "H03",
+      "recall_before": 0.8636363636363636,
+      "recall_after": 0.8636363636363636,
+      "precision_before": 0.8666666666666667,
+      "precision_after": 1.0,
+      "delta_precision": 0.1333333333333333
+    },
+    {
+      "id": "H04",
+      "recall_before": 0.7241379310344828,
+      "recall_after": 0.7241379310344828,
+      "precision_before": 1.0,
+      "precision_after": 1.0,
+      "delta_precision": 0.0
+    },
+    {
+      "id": "H05",
+      "recall_before": 0.68,
+      "recall_after": 0.68,
+      "precision_before": 0.95,
+      "precision_after": 1.0,
+      "delta_precision": 0.050000000000000044
+    },
+    {
+      "id": "A01",
+      "recall_before": 0.8,
+      "recall_after": 0.8,
+      "precision_before": 1.0,
+      "precision_after": 1.0,
+      "delta_precision": 0.0
+    },
+    {
+      "id": "A02",
+      "recall_before": 0.8333333333333334,
+      "recall_after": 0.8333333333333334,
+      "precision_before": 1.0,
+      "precision_after": 1.0,
+      "delta_precision": 0.0
+    },
+    {
+      "id": "A03",
+      "recall_before": 0.631578947368421,
+      "recall_after": 0.631578947368421,
+      "precision_before": 0.8055555555555555,
+      "precision_after": 0.8666666666666667,
+      "delta_precision": 0.06111111111111123
+    }
+  ],
+  "averages": {
+    "recall_before": 0.8496863829236254,
+    "recall_after": 0.8496863829236254,
+    "precision_before": 0.9415277777777777,
+    "precision_after": 0.9816666666666667,
+    "delta_precision": 0.0401388888888889
+  }
+}

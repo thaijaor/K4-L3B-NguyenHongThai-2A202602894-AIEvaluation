@@ -250,17 +250,27 @@ class OpenAIGenerator:
             raise RuntimeError("OPENAI_API_KEY is missing from .env")
         if not self.model:
             raise RuntimeError("OPENAI_MODEL is missing from .env")
-        self.client = OpenAI(api_key=api_key)
+        client_options: dict[str, str] = {"api_key": api_key}
+        base_url = os.getenv("OPENAI_BASE_URL", "").strip()
+        if base_url:
+            client_options["base_url"] = base_url
+        self.client = OpenAI(**client_options)
         self.max_output_tokens = max_output_tokens
 
     def generate(self, prompt: str) -> str:
-        response = self.client.responses.create(
+        response = self.client.chat.completions.create(
             model=self.model,
-            input=prompt,
+            messages=[
+                {
+                    "role": "system",
+                    "content": "Answer OrbitTech customer questions using only the provided source context. Follow all scope, safety, and privacy rules in that context.",
+                },
+                {"role": "user", "content": prompt},
+            ],
             temperature=0,
-            max_output_tokens=self.max_output_tokens,
+            max_tokens=self.max_output_tokens,
         )
-        answer = response.output_text.strip()
+        answer = (response.choices[0].message.content or "").strip()
         if not answer:
             raise RuntimeError("OpenAI returned an empty answer")
         return answer
@@ -379,6 +389,7 @@ def generate_actual_answers(
     corpus_dir: str | Path,
     generator: TextGenerator | None = None,
     top_k: int = 5,
+    request_interval: float = 0.0,
     progress: ProgressCallback | None = None,
 ) -> dict[str, Any]:
     """Generate the auditable actual-answer artifact for all dataset questions."""
@@ -388,6 +399,8 @@ def generate_actual_answers(
             progress(message)
 
     dataset_file = Path(dataset_path).expanduser().resolve()
+    if request_interval < 0:
+        raise ValueError("request_interval must be non-negative")
     notify(f"Loading golden questions: {dataset_file}")
     dataset_corpus_id, questions = _load_questions(dataset_file)
     notify(f"Loading and indexing corpus: {Path(corpus_dir).expanduser().resolve()}")
@@ -451,6 +464,8 @@ def generate_actual_answers(
             f"[{bar_after}] {index:02d}/{total:02d} | {item['id']} OK "
             f"({elapsed:.1f}s, {len(response.retrieved_chunks)} chunks)"
         )
+        if request_interval and index < total:
+            time.sleep(request_interval)
 
     return {
         "schema_version": "1.0",
@@ -489,6 +504,12 @@ def parse_args() -> argparse.Namespace:
         help="Output artifact (default: artifacts/actual_answers.json)",
     )
     parser.add_argument("--top-k", type=int, default=5)
+    parser.add_argument(
+        "--request-interval",
+        type=float,
+        default=0.0,
+        help="Seconds to wait between model requests (useful for API quotas)",
+    )
     return parser.parse_args()
 
 
@@ -499,6 +520,7 @@ def main() -> int:
             args.dataset,
             args.corpus_dir,
             top_k=args.top_k,
+            request_interval=args.request_interval,
             progress=lambda message: print(message, flush=True),
         )
         output = args.output.expanduser().resolve()
